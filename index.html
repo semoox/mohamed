@@ -8,26 +8,91 @@
     <style>
         body { font-family: Arial, sans-serif; background-color: #f4f4f4; color: #333; margin: 0; padding: 20px; }
         .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        .header { display: flex; align-items: center; margin-bottom: 20px; }
-        .cv-image { width: 120px; height: 140px; border-radius: 50%; margin-right: 20px; }
-        h1 { margin: 1; font-size: 1.8em; }
-        .contact-info { font-size: 1.1em; margin-top: 5px; color: #339af0; }
-        h2 { color: #339af0; margin-top: 20px; }
-        p, li { line-height: 1.8; }
+        .header { text-align: center; margin-bottom: 20px; }
+        .cv-image { width: 120px; height: 140px; border-radius: 50%; margin-bottom: 10px; }
+        h1 { margin: 0; font-size: 1.8em; }
+        .title { font-size: 1.1em; color: #0056b3; margin: 5px 0; }
+        .contact-info { 
+            display: flex; 
+            justify-content: center; 
+            font-size: 1em; 
+            color: #339af0; 
+            margin-top: 20px; 
+        }
+        .contact-info span {
+            margin: 0 40px;  
+        }
+        .phone {
+            color: #333; /* لون الرمز الخاص بالهاتف */
+			margin-top: 10px; 
+            margin-bottom: 20px; 
+            margin-right: 30px; 
+            margin-left: 30px; 
+            #border-bottom: 2px solid #ddd; 
+            padding-bottom: 5px; 
+		}
+        .location {	
+		    color: #333; /* لون الرمز الخاص بالهاتف */
+			margin-top: 10px; 
+            margin-bottom: 20px; 
+            margin-right: 30px; 
+            margin-left: 30px; 
+            #border-bottom: 2px solid #ddd; 
+            padding-bottom: 5px; 
+        }
+        .email {
+            color: #333; /* لون الرمز الخاص بالبريد الإلكتروني */
+			margin-top: 10px; 
+            margin-bottom: 20px; 
+            margin-right: 30px; 
+            margin-left: 30px; 
+            #border-bottom: 2px solid #ddd; 
+            padding-bottom: 5px; 
+        }
+        h2 {
+            font-size: 1.5em; 
+            color: #0056b3; 
+            margin-top: 20px; 
+            margin-bottom: 10px; 
+            margin-right: 15px; 
+            margin-left: 15px; 
+            #border-bottom: 2px solid #ddd; 
+            padding-bottom: 5px; 
+        }
+        p {
+            font-size: 1.1em; /* حجم الخط */
+            color: #666; /* لون النص */
+            margin-top: 10px; /* المسافة العليا */
+            margin-bottom: 10px; /* المسافة السفلية */
+            margin-right: 30px; /* المسافة لليمين */
+            margin-left: 30px; /* المسافة لليسار *//
+            line-height: 1.7; /* تباعد الأسطر */
+			#font-weight: bold; /* لجعل النص عريض */
+        }
+        li {
+            font-size: 1.1em; /* حجم الخط */
+            color: #666; /* لون النص */
+            margin-top: 10px; /* المسافة العليا */
+            margin-bottom: 10px; /* المسافة السفلية */
+            margin-right: 20px; /* المسافة لليمين */
+            margin-left: 15px; /* المسافة لليسار */
+            line-height: 1.7; /* تباعد الأسطر */
+			#font-weight: bold; /* لجعل النص عريض */
+            list-style-type: disc; /* شكل النقطة في القوائم */
+            padding-left: 20px; /* المسافة عن الحدود اليسرى */
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Header section with image and name -->
         <div class="header">
             <img src="cv_image.jpg" alt="Mohamed Samir CV Image" class="cv-image">
-            <div>
-                <h1>Mohamed Samir</h1>
-                <div class="contact-info">
-                    <span>Human Resource Specialist</span><br>
-                    <span>📞 01007503224</span><br>
-                    <span>✉ m.srss@yahoo.com</span>
-                </div>
+            <h1>Mohamed Samir</h1>
+            <div class="title">Human Resource Specialist</div>
+            <div class="contact-info">
+                <span class="phone">📞 01007503224</span>
+				<span class="location">📍 Cairo</span>
+                <span class="email">✉ m.srss@yahoo.com</span>
             </div>
         </div>
 
@@ -43,7 +108,7 @@
         </ul>
 
         <h2>Experiences</h2>
-        <p>During my studies in Human Resources Management, I gained experience in job analysis, writing job descriptions, assessing recruitment needs, and attracting and evaluating candidates. I also learned how to conduct interviews, prepare orientation programs, and organize training and development programs. Additionally, I developed skills in performance evaluation, competency model development, and preparing employee incentives and benefits programs to ensure OSHA and labor regulation compliance.</p>
+        <p>During my studies in Human Resources Management, I gained multiple experiences in job analysis, writing job descriptions, assessing recruitment needs, and attracting and evaluating candidates. I also learned how to conduct interviews, prepare orientation programs, and organize training and development programs. In addition, I have developed my skills in performance evaluation, developing competency models, preparing incentive and benefits programs for employees, and other HR policies to ensure compliance with OSHA and all local and international labor regulations.</p>
 
         <h2>Courses</h2>
         <ul>
