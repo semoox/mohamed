@@ -93,7 +93,8 @@ p {
             margin-right: 30px; /* المسافة لليمين */
             margin-left: 30px; /* المسافة لليسار *//
             line-height: 1.7; /* تباعد الأسطر */
-			#font-weight: bold; /* لجعل النص عريض */
+	    list-style-type: disc; /* شكل النقطة في القوائم */
+	    #font-weight: bold; /* لجعل النص عريض */
         }
 li {
             font-size: 1.1em; /* حجم الخط */
