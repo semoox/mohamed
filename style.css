@@ -1,0 +1,83 @@
+body { 
+    font-family: Arial, sans-serif; 
+    background-color: #f4f4f4; 
+    color: #333; 
+    margin: 0; 
+    padding: 20px; 
+}
+
+.container { 
+    max-width: 800px; 
+    margin: auto; 
+    background: white; 
+    padding: 20px; 
+    border-radius: 8px; 
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); 
+}
+
+.header { 
+    text-align: center; 
+    margin-bottom: 20px; 
+}
+
+.cv-image { 
+    width: 120px; 
+    height: 140px; 
+    border-radius: 50%; 
+    margin-bottom: 10px; 
+}
+
+h1 { 
+    margin: 0; 
+    font-size: 2em; 
+}
+
+.title { 
+    font-size: 1.2em; 
+    color: #0056b3; 
+    margin: 5px 0; 
+}
+
+.contact-info { 
+    display: flex; 
+    justify-content: center; 
+    font-size: 1em; 
+    color: #339af0; 
+    margin-top: 10px; 
+}
+
+.contact-info span {
+    margin: 0 20px;  
+}
+
+.phone, .location, .email {
+    color: #333; 
+    margin: 0; 
+    padding: 0; 
+}
+
+h2 {
+    font-size: 1.5em; 
+    color: #0056b3; 
+    margin-top: 20px; 
+    margin-bottom: 10px; 
+    border-bottom: 2px solid #ddd; 
+    padding-bottom: 5px; 
+}
+
+p {
+    font-size: 1.1em; 
+    color: #666; 
+    margin: 10px 30px; 
+    line-height: 1.7; 
+    font-weight: normal; 
+}
+
+li {
+    font-size: 1.1em; 
+    color: #666; 
+    margin: 10px 20px; 
+    line-height: 1.7; 
+    list-style-type: disc; 
+    padding-left: 20px; 
+}
