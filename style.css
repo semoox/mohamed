@@ -94,6 +94,7 @@ p {
             margin-left: 30px; /* المسافة لليسار *//
             line-height: 1.7; /* تباعد الأسطر */
 	    list-style-type: disc; /* شكل النقطة في القوائم */
+            padding-left: 20px; /* المسافة عن الحدود اليسرى */ 
 	    #font-weight: bold; /* لجعل النص عريض */
         }
 li {
