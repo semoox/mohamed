@@ -16,63 +16,175 @@
         body {
             font-family: 'Exo 2', sans-serif;
             color: #ffffff;
-            background: linear-gradient(135deg, #0a0a2a, #1a1a40, #0a0a2a);
+            background-color: #000;
             min-height: 100vh;
             overflow-x: hidden;
             line-height: 1.6;
+            position: relative;
         }
         
-        #stars-container {
+        /* Starfield */
+        #starfield {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
-            overflow: hidden;
+            z-index: 0;
         }
         
-        .star {
+        .meteor {
+            position: fixed;
+            width: 2px;
+            height: 80px;
+            background: linear-gradient(to bottom, #4cc9f0, rgba(76, 201, 240, 0));
+            opacity: .8;
+            transform: rotate(45deg);
+            z-index: 0;
+        }
+        
+        /* Rocket */
+        #rocket {
+            position: fixed;
+            width: 60px;
+            height: auto;
+            z-index: 2;
+            transition: transform .05s linear;
+            filter: drop-shadow(0 0 8px #4cc9f0);
+        }
+        
+        #rocket .flame {
             position: absolute;
-            background-color: #ffffff;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%) scaleY(1);
+            width: 12px;
+            height: 28px;
+            background: linear-gradient(to bottom, #ffea00, #ff5722);
             border-radius: 50%;
-            transition: transform 0.3s ease-out;
+            opacity: .9;
+            animation: flame-flicker .2s infinite alternate;
+            filter: drop-shadow(0 0 10px #ff5722);
         }
         
+        @keyframes flame-flicker {
+            from { opacity: .9; }
+            to { opacity: .6; }
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            background: rgba(10, 10, 42, 0.7);
+            padding: 10px 0;
+            z-index: 3;
+            backdrop-filter: blur(5px);
+        }
+        
+        nav a {
+            color: #4cc9f0;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: .3s;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        nav a:hover {
+            color: #f72585;
+        }
+        
+        /* Container */
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 100px auto 50px;
+            padding: 20px;
+        }
+        
+        section {
+            margin-bottom: 50px;
+            background: rgba(13, 13, 53, 0.8);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(76, 201, 240, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(76, 201, 240, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(76, 201, 240, 0.4);
+        }
+        
+        section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #4cc9f0;
+            font-family: 'Orbitron', sans-serif;
+            border-bottom: 2px solid rgba(247, 37, 133, 0.5);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        li {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        li:before {
+            content: "➔";
+            color: #4cc9f0;
+            position: absolute;
+            left: 0;
+        }
+        
+        a {
+            color: #4cc9f0;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            color: #f72585;
+            text-decoration: underline;
         }
         
         header {
             text-align: center;
-            padding: 3rem 1rem;
-            position: relative;
-            overflow: hidden;
+            margin-bottom: 40px;
+            padding: 40px 20px;
+            background: rgba(13, 13, 53, 0.8);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(76, 201, 240, 0.2);
         }
         
-        h1 {
-            font-family: 'Orbitron', sans-serif;
+        header h1 {
             font-size: 3rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 10px;
             color: #4cc9f0;
+            font-family: 'Orbitron', sans-serif;
             text-shadow: 0 0 10px rgba(76, 201, 240, 0.7);
-            letter-spacing: 2px;
         }
         
-        h2 {
-            font-size: 1.8rem;
-            color: #f72585;
-            margin-bottom: 1.5rem;
-            font-weight: 400;
-        }
-        
-        .tagline {
+        header p {
             font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 2rem;
             color: #b9faf8;
+            margin-bottom: 20px;
         }
         
         .contact-info {
@@ -80,7 +192,7 @@
             justify-content: center;
             flex-wrap: wrap;
             gap: 2rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
         }
         
         .contact-item {
@@ -113,41 +225,24 @@
             transform: translateY(-3px);
         }
         
-        .section {
-            background: rgba(13, 13, 53, 0.6);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 2.5rem;
-            margin-bottom: 3rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(76, 201, 240, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-        }
-        
-        .section-title {
-            font-family: 'Orbitron', sans-serif;
-            color: #4cc9f0;
-            font-size: 2.2rem;
-            margin-bottom: 2rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #f72585;
-            display: inline-block;
-        }
-        
-        .summary-text {
-            font-size: 1.2rem;
-            line-height: 1.8;
-        }
-        
+        /* Experience items */
         .experience-item, .education-item {
             margin-bottom: 2.5rem;
             padding-left: 1.5rem;
-            border-left: 3px solid #4cc9f0;
+            border-left: 3px solid rgba(76, 201, 240, 0.5);
+            position: relative;
+        }
+        
+        .experience-item::before, .education-item::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #4cc9f0;
+            box-shadow: 0 0 10px rgba(76, 201, 240, 0.7);
         }
         
         .experience-title, .education-title {
@@ -166,62 +261,39 @@
             color: #4cc9f0;
             font-style: italic;
             margin-bottom: 0.8rem;
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 4px;
         }
         
-        .achievements {
-            margin-top: 1rem;
-        }
-        
-        .achievements li {
-            margin-bottom: 0.5rem;
-            list-style-type: none;
-            position: relative;
-            padding-left: 1.5rem;
-        }
-        
-        .achievements li:before {
-            content: "➔";
-            color: #4cc9f0;
-            position: absolute;
-            left: 0;
-        }
-        
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .skill-category h3 {
-            color: #b9faf8;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-        
-        .skill-item {
-            margin-bottom: 1rem;
+        /* Skill bars */
+        .skill {
+            margin: 15px 0;
         }
         
         .skill-name {
+            margin-bottom: 5px;
             display: flex;
             justify-content: space-between;
-            margin-bottom: 0.3rem;
         }
         
         .skill-bar {
-            height: 8px;
             background: rgba(76, 201, 240, 0.2);
-            border-radius: 4px;
+            border-radius: 5px;
             overflow: hidden;
+            height: 10px;
         }
         
-        .skill-progress {
-            height: 100%;
+        .skill-fill {
             background: linear-gradient(90deg, #4cc9f0, #f72585);
-            border-radius: 4px;
-            transition: width 1.5s ease;
+            width: 0;
+            height: 100%;
+            transition: width 2s ease;
+            border-radius: 5px;
         }
         
+        /* Languages */
         .language-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -232,6 +304,7 @@
             background: rgba(76, 201, 240, 0.1);
             padding: 1.5rem;
             border-radius: 10px;
+            border: 1px solid rgba(76, 201, 240, 0.2);
         }
         
         .language-name {
@@ -263,8 +336,11 @@
             height: 100%;
             background: linear-gradient(90deg, #4cc9f0, #f72585);
             border-radius: 4px;
+            width: 0;
+            transition: width 2s ease;
         }
         
+        /* Interests */
         .interests {
             display: flex;
             flex-wrap: wrap;
@@ -279,6 +355,7 @@
             align-items: center;
             gap: 0.8rem;
             transition: transform 0.3s ease, background 0.3s ease;
+            border: 1px solid rgba(76, 201, 240, 0.2);
         }
         
         .interest-item:hover {
@@ -291,6 +368,35 @@
             font-size: 1.5rem;
         }
         
+        /* Floating Buttons */
+        .floating-buttons {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 3;
+        }
+        
+        .floating-buttons a {
+            display: inline-block;
+            padding: 12px 20px;
+            border-radius: 30px;
+            background: linear-gradient(45deg, #4cc9f0, #f72585);
+            color: #fff;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 0 15px rgba(76, 201, 240, 0.6);
+            transition: .3s;
+            font-family: 'Exo 2', sans-serif;
+        }
+        
+        .floating-buttons a:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(76, 201, 240, 1);
+        }
+        
         footer {
             text-align: center;
             padding: 2rem;
@@ -298,16 +404,37 @@
             font-size: 1.1rem;
         }
         
+        /* Typewriter effect */
+        .typewriter h1 {
+          overflow: hidden;
+          border-right: .15em solid #4cc9f0;
+          white-space: nowrap;
+          margin: 0 auto;
+         /* typing runs once, blink runs 1 times, then stops */
+          animation: typing 3s steps(30, end) forwards,
+             blink .75s step-end 1 forwards;
+        }
+
+        @keyframes typing {
+        from { width: 0 }
+        to { width: 100% }
+        }
+
+        @keyframes blink {
+         50% { border-color: transparent; }
+         100% { border-color: transparent; } /* stays hidden after last blink */
+        }
+        
         @media (max-width: 768px) {
-            h1 {
+            header h1 {
                 font-size: 2.2rem;
             }
             
-            .section {
+            section {
                 padding: 1.5rem;
             }
             
-            .skills-grid, .language-container {
+            .language-container {
                 grid-template-columns: 1fr;
             }
             
@@ -320,21 +447,45 @@
             .interests {
                 justify-content: center;
             }
+            
+            nav {
+                flex-wrap: wrap;
+            }
+            
+            nav a {
+                margin: 5px;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div id="stars-container"></div>
+    <canvas id="starfield"></canvas>
+    <div id="meteors"></div>
+    
+    <div id="rocket">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="#4cc9f0">
+            <path d="M477.7 0C428.8 1.6 372.4 21.5 318.8 62.2c-49.5 37.4-90.6 86.4-119.2 137.4l-47.1 15.7-58.7-16.6-54.1 54.1 16.6 58.7-15.7 47.1C61.4 365.2 12.4 406.3-25 455.8-65.7 509.4-85.6 565.8-87.2 614.7c-.4 14.8 11.5 26.7 26.3 26.3 48.9-1.6 105.3-21.5 158.9-62.2 49.5-37.4 90.6-86.4 119.2-137.4l47.1-15.7 58.7 16.6 54.1-54.1-16.6-58.7 15.7-47.1c51-28.6 100-69.7 137.4-119.2 40.7-53.6 60.6-110 62.2-158.9.4-14.8-11.5-26.7-26.3-26.3z"/>
+        </svg>
+        <div class="flame"></div>
+    </div>
+    
+    <nav>
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+    </nav>
     
     <div class="container">
-        <header>
+        <header class="typewriter">
             <h1>MOHAMED SAMIR</h1>
-            <h2>HR Talent Acquisition</h2>
+            <p>HR Talent Acquisition</p>
             
             <div class="contact-info">
                 <div class="contact-item">
                     <i class="fas fa-envelope"></i>
-                    <span>m.srss@yahoo.com</span>
+                    <span>mohamed.samir129@outlook.com</span>
                 </div>
                 <div class="contact-item">
                     <i class="fas fa-phone"></i>
@@ -347,37 +498,39 @@
             </div>
             
             <div class="social-links">
-                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#Don't Click Me"><i class="fab fa-linkedin"></i></a>
                 <a href="https://wa.me/201007503224"><i class="fab fa-whatsapp"></i></a>
-                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#Why you click here?"><i class="fab fa-facebook"></i></a>
             </div>
         </header>
         
-        <section class="section">
-            <h2 class="section-title">Professional Summary</h2>
-            <p class="summary-text">An HR-certified professional with a legal training, accused of a talent for operationalizing compliance and building resilient HR infrastructure. Offers a proven ability to dissect complex problems and implement streamlined processes—turning organizational support into a strategic advantage. Poised to contribute directly to talent acquisition and development while fortifying the entire employee lifecycle.</p>
+        <section id="about">
+            <h2>Professional Summary</h2>
+            <p>Certified HR professional with a legal foundation, known for transforming compliance into strategic advantage. Adept at streamlining processes, enhancing employee engagement, and driving talent acquisition success. Proven track record in reducing turnover, optimizing recruitment, and fortifying the employee lifecycle.</p>
         </section>
         
-        <section class="section">
-            <h2 class="section-title">Work Experience</h2>
+        <section id="experience">
+            <h2>Work Experience</h2>
             
             <div class="experience-item">
                 <h3 class="experience-title">Talent Acquisition</h3>
-                <p class="company">Alex Technology System</p>
+                <p class="company">Alex Technology Systems</p>
                 <p class="date">January 2025 – Present</p>
-                <ul class="achievements">
-                    <li>Successfully reduced voluntary turnover by 25% within six months by introducing a company-wide mentorship program and conducting 'stay interviews' to proactively address employee concerns</li>
-                    <li>Hired over 20 candidates for hard-to-fill Sales and IT roles, contributing to a 30% increase in departmental productivity</li>
+                <ul>
+                    <li>Reduced voluntary turnover by 25% in six months via mentorship programs and proactive 'stay interviews'</li>
+                    <li>Filled 20+ hard-to-hire Sales and IT roles, boosting departmental productivity by 30%</li>
+					<li>Cut time-to-hire by 35% through optimized sourcing and interview strategies</li>
                 </ul>
             </div>
             
             <div class="experience-item">
-                <h3 class="experience-title">Associate lawyer</h3>
+                <h3 class="experience-title">Associate Lawyer</h3>
                 <p class="company">AL-Gaflan Law Office</p>
                 <p class="date">April 2021 – August 2024</p>
-                <ul class="achievements">
-                    <li>Researched and analyzed over 100 legal cases, improving case preparation efficiency by 70%</li>
-                    <li>Gained expertise in legal research and drafted advisory letters of advice on issues including employment law, family disputes and civil law</li>
+                <ul>
+                    <li>Researched 100+ legal cases, improving case prep efficiency by 70%</li>
+                    <li>Drafted advisory letters on employment, family, and civil law</li>
+					<li>Built compliance frameworks that lowered legal risk by 40%</li>
                 </ul>
             </div>
             
@@ -385,28 +538,27 @@
                 <h3 class="experience-title">Junior Lawyer</h3>
                 <p class="company">Howedy Law Office</p>
                 <p class="date">March 2019 – March 2021</p>
-                <ul class="achievements">
-                    <li>Composed client correspondence</li>
-                    <li>Drafted letters to clients, providing updates on their cases, including updates on commercial disputes and breaches of contract</li>
-                    <li>Attended a court hearing of a summary judgment, gaining insight into how a case is presenting</li>
+                <ul>
+                    <li>Managed client correspondence and case updates</li>
+                    <li>Attended court hearings, gaining practical litigation insight</li>
                 </ul>
             </div>
         </section>
         
-        <section class="section">
-            <h2 class="section-title">Responsibilities</h2>
-            <ul class="achievements">
-                <li>Actively posted job openings and screened resumes to assist in the recruitment process</li>
-                <li>Support the onboarding of new employees, preparing materials and facilitating training sessions</li>
-                <li>Maintain accurate employee records and documentation within the HR system</li>
-                <li>Respond to employee inquiries regarding HR policies, benefits, and procedures</li>
-                <li>Coordinate employee engagement activities and professional development programs</li>
-                <li>Collaborate with senior HR staff to analyze employee feedback and identify improvement areas</li>
+        <section>
+            <h2>Key Responsibilities</h2>
+            <ul>
+                <li>Posting job openings and screening resumes</li>
+                <li>Supporting onboarding and training sessions</li>
+                <li>Maintaining accurate HR records and documentation</li>
+                <li>Responding to employee inquiries on policies and benefits</li>
+                <li>Coordinating engagement and development programs</li>
+                <li>Analyzing feedback and collaborating on improvement initiatives</li>
             </ul>
         </section>
         
-        <section class="section">
-            <h2 class="section-title">Education & Qualifications</h2>
+        <section id="education">
+            <h2>Education & Qualifications</h2>
             
             <div class="education-item">
                 <h3 class="education-title">Bachelor of Law</h3>
@@ -418,9 +570,9 @@
                 <h3 class="education-title">Human Resources Management</h3>
                 <p class="institution">Cairo University</p>
                 <p class="date">September 2024 – December 2024</p>
-                <ul class="achievements">
-                    <li>Leadership of (5) trainee during HR course providing guidance and support for team and achieve success as a teamwork</li>
-                    <li>Contribute with team in many projects such as Job analysis for many vaccines, performance appraisal and turnover</li>
+                <ul>
+                    <li>Led a team of five trainees during HR course, providing guidance and support for team success</li>
+                    <li>Contributed to multiple projects including job analysis, performance appraisal systems, and turnover reduction strategies</li>
                 </ul>
             </div>
             
@@ -428,119 +580,99 @@
                 <h3 class="education-title">Certificate of English Conversation</h3>
                 <p class="institution">Assiut University</p>
                 <p class="date">October 2023 – November 2023</p>
-                <ul class="achievements">
-                    <li>Hit the target of course 99%</li>
+                <ul>
+                    <li>Achieved top score of 99%</li>
+					<li>Developed advanced conversational fluency</li>
                 </ul>
             </div>
         </section>
         
-        <section class="section">
-            <h2 class="section-title">Skills & Expertise</h2>
+        <section id="skills">
+            <h2>Skills & Expertise</h2>
             
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Recruitment</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Full-Cycle Recruitment</span>
-                            <span>95%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 95%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Candidate Sourcing</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 90%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Employer Branding</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 85%"></div>
-                        </div>
-                    </div>
+            <div class="skill">
+                <div class="skill-name">
+                    <span>Full-Cycle Recruitment</span>
+                    <span>95%</span>
                 </div>
-                
-                <div class="skill-category">
-                    <h3>Technical</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>ATS Systems</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 90%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>HR Analytics</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 80%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Data Visualization</span>
-                            <span>75%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 75%"></div>
-                        </div>
-                    </div>
+                <div class="skill-bar">
+                    <div class="skill-fill" data-width="95%"></div>
                 </div>
-                
-                <div class="skill-category">
-                    <h3>Soft Skills</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Negotiation</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 90%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Stakeholder Management</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 85%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Interviewing</span>
-                            <span>95%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 95%"></div>
-                        </div>
-                    </div>
+            </div>
+            
+            <div class="skill">
+                <div class="skill-name">
+                    <span>Candidate Sourcing</span>
+                    <span>90%</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-fill" data-width="90%"></div>
+                </div>
+            </div>
+            
+            <div class="skill">
+                <div class="skill-name">
+                    <span>Employer Branding</span>
+                    <span>85%</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-fill" data-width="85%"></div>
+                </div>
+            </div>
+            
+            <div class="skill">
+                <div class="skill-name">
+                    <span>ATS Systems</span>
+                    <span>90%</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-fill" data-width="90%"></div>
+                </div>
+            </div>
+            
+            <div class="skill">
+                <div class="skill-name">
+                    <span>HR Analytics</span>
+                    <span>80%</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-fill" data-width="80%"></div>
+                </div>
+            </div>
+            
+            <div class="skill">
+                <div class="skill-name">
+                    <span>Negotiation</span>
+                    <span>90%</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-fill" data-width="90%"></div>
+                </div>
+            </div>
+            
+            <div class="skill">
+                <div class="skill-name">
+                    <span>Stakeholder Management</span>
+                    <span>85%</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-fill" data-width="85%"></div>
+                </div>
+            </div>
+            
+            <div class="skill">
+                <div class="skill-name">
+                    <span>Interviewing</span>
+                    <span>95%</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-fill" data-width="95%"></div>
                 </div>
             </div>
         </section>
         
-        <section class="section">
-            <h2 class="section-title">Languages</h2>
+        <section>
+            <h2>Languages</h2>
             
             <div class="language-container">
                 <div class="language-item">
@@ -552,7 +684,7 @@
                             <span>Native</span>
                         </div>
                         <div class="language-progress">
-                            <div class="language-progress-bar" style="width: 100%"></div>
+                            <div class="language-progress-bar" data-width="100%"></div>
                         </div>
                         
                         <div class="language-skill">
@@ -560,7 +692,7 @@
                             <span>Native</span>
                         </div>
                         <div class="language-progress">
-                            <div class="language-progress-bar" style="width: 100%"></div>
+                            <div class="language-progress-bar" data-width="100%"></div>
                         </div>
                         
                         <div class="language-skill">
@@ -568,7 +700,7 @@
                             <span>Native</span>
                         </div>
                         <div class="language-progress">
-                            <div class="language-progress-bar" style="width: 100%"></div>
+                            <div class="language-progress-bar" data-width="100%"></div>
                         </div>
                         
                         <div class="language-skill">
@@ -576,7 +708,7 @@
                             <span>Native</span>
                         </div>
                         <div class="language-progress">
-                            <div class="language-progress-bar" style="width: 100%"></div>
+                            <div class="language-progress-bar" data-width="100%"></div>
                         </div>
                     </div>
                 </div>
@@ -590,7 +722,7 @@
                             <span>B2</span>
                         </div>
                         <div class="language-progress">
-                            <div class="language-progress-bar" style="width: 80%"></div>
+                            <div class="language-progress-bar" data-width="80%"></div>
                         </div>
                         
                         <div class="language-skill">
@@ -598,7 +730,7 @@
                             <span>B2</span>
                         </div>
                         <div class="language-progress">
-                            <div class="language-progress-bar" style="width: 80%"></div>
+                            <div class="language-progress-bar" data-width="80%"></div>
                         </div>
                         
                         <div class="language-skill">
@@ -606,7 +738,7 @@
                             <span>B1</span>
                         </div>
                         <div class="language-progress">
-                            <div class="language-progress-bar" style="width: 70%"></div>
+                            <div class="language-progress-bar" data-width="70%"></div>
                         </div>
                         
                         <div class="language-skill">
@@ -614,15 +746,15 @@
                             <span>B1</span>
                         </div>
                         <div class="language-progress">
-                            <div class="language-progress-bar" style="width: 70%"></div>
+                            <div class="language-progress-bar" data-width="70%"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
         
-        <section class="section">
-            <h2 class="section-title">Interests</h2>
+        <section>
+            <h2>Interests</h2>
             <div class="interests">
                 <div class="interest-item">
                     <i class="fas fa-rocket"></i>
@@ -641,8 +773,8 @@
                     <span>Reading Sci-Fi</span>
                 </div>
                 <div class="interest-item">
-                    <i class="fas fa-robot"></i>
-                    <span>AI Ethics</span>
+                    <i class="fas fa-laptop"></i>
+                    <span>Play with coding</span>
                 </div>
             </div>
         </section>
@@ -651,103 +783,167 @@
             <p>© 2025 Mohamed Samir | HR Talent Acquisition</p>
         </footer>
     </div>
+    
+    <div class="floating-buttons">
+        <a href="#" id="contact-btn">Contact Me</a>
+    </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const starsContainer = document.getElementById('stars-container');
-            const stars = [];
-            const starCount = 150;
-            
-            // Create stars
-            for (let i = 0; i < starCount; i++) {
-                const star = document.createElement('div');
-                star.classList.add('star');
-                
-                // Randomize star properties
-                const size = Math.random() * 3 + 1;
-                const opacity = Math.random() * 0.7 + 0.3;
-                
-                star.style.width = `${size}px`;
-                star.style.height = `${size}px`;
-                star.style.opacity = opacity;
-                
-                // Position stars randomly
-                star.style.left = `${Math.random() * 100}%`;
-                star.style.top = `${Math.random() * 100}%`;
-                
-                starsContainer.appendChild(star);
-                stars.push(star);
-            }
-            
-            // Mouse move effect
-            document.addEventListener('mousemove', function(e) {
-                const mouseX = e.clientX;
-                const mouseY = e.clientY;
-                
-                stars.forEach(star => {
-                    const starX = parseInt(star.style.left);
-                    const starY = parseInt(star.style.top);
-                    
-                    const distX = mouseX - window.innerWidth * starX / 100;
-                    const distY = mouseY - window.innerHeight * starY / 100;
-                    
-                    const distance = Math.sqrt(distX * distX + distY * distY);
-                    
-                    if (distance < 200) {
-                        const moveX = (distX / distance) * -5;
-                        const moveY = (distY / distance) * -5;
-                        
-                        star.style.transform = `translate(${moveX}px, ${moveY}px)`;
-                    } else {
-                        star.style.transform = 'translate(0, 0)';
-                    }
+        // STARFIELD
+        const canvas = document.getElementById('starfield');
+        const ctx = canvas.getContext('2d');
+        canvas.width = innerWidth;
+        canvas.height = innerHeight;
+        
+        let stars = [];
+        const numStars = 250;
+        
+        function initStars() {
+            stars = [];
+            for (let i = 0; i < numStars; i++) {
+                stars.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    radius: Math.random() * 1.5,
+                    speed: Math.random() * 0.2 + 0.05
                 });
+            }
+        }
+        
+        function drawStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#4cc9f0';
+            stars.forEach(s => {
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+                ctx.fill();
             });
-            
-            // Animate skill bars on scroll
-            function animateSkillBars() {
-                const skillBars = document.querySelectorAll('.skill-progress');
-                const languageBars = document.querySelectorAll('.language-progress-bar');
+        }
+        
+        function updateStars(mx, my) {
+            stars.forEach(s => {
+                s.x += s.speed * (mx / canvas.width - 0.5) * 2;
+                s.y += s.speed * (my / canvas.height - 0.5) * 2;
                 
-                skillBars.forEach(bar => {
-                    const width = bar.style.width;
-                    bar.style.width = '0';
+                if (s.x < 0) s.x = canvas.width;
+                if (s.x > canvas.width) s.x = 0;
+                if (s.y < 0) s.y = canvas.height;
+                if (s.y > canvas.height) s.y = 0;
+            });
+        }
+        
+        initStars();
+        
+        let mx = innerWidth / 2;
+        let my = innerHeight / 2;
+        
+        document.addEventListener('mousemove', e => {
+            mx = e.clientX;
+            my = e.clientY;
+        });
+        
+        function animateStars() {
+            updateStars(mx, my);
+            drawStars();
+            requestAnimationFrame(animateStars);
+        }
+        
+        animateStars();
+        
+        // METEORS
+        function createMeteor() {
+            const meteor = document.createElement('div');
+            meteor.classList.add('meteor');
+            meteor.style.top = Math.random() * innerHeight + 'px';
+            meteor.style.left = Math.random() * innerWidth + 'px';
+            document.getElementById('meteors').appendChild(meteor);
+            
+            setTimeout(() => {
+                meteor.remove();
+            }, 2000);
+        }
+        
+        setInterval(createMeteor, 3000);
+        
+        // ROCKET FOLLOW
+        const rocket = document.getElementById('rocket');
+        const flame = rocket.querySelector('.flame');
+        
+        let rx = innerWidth / 2;
+        let ry = innerHeight / 2;
+        let lastX = rx;
+        let lastY = ry;
+        
+        function animateRocket() {
+            const targetX = mx - 40;
+            const targetY = my - 80;
+            
+            rx += (targetX - rx) * 0.1;
+            ry += (targetY - ry) * 0.1;
+            
+            rocket.style.transform = `translate(${rx}px, ${ry}px)`;
+            
+            const dx = rx - lastX;
+            const dy = ry - lastY;
+            const speed = Math.sqrt(dx * dx + dy * dy);
+            
+            lastX = rx;
+            lastY = ry;
+            
+            const scale = Math.min(1 + speed * 0.3, 3);
+            flame.style.transform = `translateX(-50%) scaleY(${scale})`;
+            
+            requestAnimationFrame(animateRocket);
+        }
+        
+        animateRocket();
+        
+        // RESIZE
+        addEventListener('resize', () => {
+            canvas.width = innerWidth;
+            canvas.height = innerHeight;
+            initStars();
+        });
+        
+        // SMOOTH SCROLL
+        document.querySelectorAll('nav a, .floating-buttons a[href^="#"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId && targetId !== '#') {
+                    document.querySelector(targetId).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Contact button functionality
+        document.getElementById('contact-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            // Scroll to header where contact info is located
+            document.querySelector('header').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+        
+        // SKILL BARS
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelectorAll('.skill-fill').forEach(bar => {
+                        bar.style.width = bar.getAttribute('data-width');
+                    });
                     
-                    setTimeout(() => {
-                        bar.style.width = width;
-                    }, 300);
-                });
-                
-                languageBars.forEach(bar => {
-                    const width = bar.style.width;
-                    bar.style.width = '0';
-                    
-                    setTimeout(() => {
-                        bar.style.width = width;
-                    }, 600);
-                });
-            }
-            
-            // Intersection Observer to trigger animation when skills section is in view
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        animateSkillBars();
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.5 });
-            
-            const skillsSection = document.querySelector('.skills-grid');
-            if (skillsSection) {
-                observer.observe(skillsSection);
-            }
-            
-            // Also observe language section
-            const languageSection = document.querySelector('.language-container');
-            if (languageSection) {
-                observer.observe(languageSection);
-            }
+                    entry.target.querySelectorAll('.language-progress-bar').forEach(bar => {
+                        bar.style.width = bar.getAttribute('data-width');
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        document.querySelectorAll('#skills, .language-container').forEach(sec => {
+            observer.observe(sec);
         });
     </script>
 </body>
